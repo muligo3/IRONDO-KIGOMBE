@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RWANDA Youth Opportunity Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: url('https://flagcdn.com/w1280/rw.jpg') center center / cover no-repeat fixed;
+      display: flex; align-items: center; justify-content: center; padding: 15px;
+      position: relative;
+    }
+    body::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.55); z-index: 1; }
+    .container { position: relative; z-index: 2; background: rgba(255,255,255,0.98); width: 100%; max-width: 480px; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.45); backdrop-filter: blur(12px); }
+    .header { background: linear-gradient(135deg, #006a4e, #00a86b); color: white; padding: 30px 20px 70px; text-align: center; }
+    .header h1 { font-size: clamp(24px, 5vw, 30px); font-weight: 700; margin-bottom: 8px; }
+    .logo { width: 140px; height: 140px; margin: -70px auto 0; background: white; border-radius: 50%; padding: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+    .logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+    .tagline { text-align: center; margin: 25px 20px 15px; font-size: clamp(15px, 4vw, 17px); color: #1e3a8a; font-weight: 600; }
+    .form-body { padding: 25px 30px 35px; }
+    label { display: block; font-weight: 600; color: #333; margin-bottom: 8px; font-size: 15px; }
+    input, select { width: 100%; padding: 15px 16px; border: 2px solid #e1e5e9; border-radius: 14px; font-size: 16px; transition: all 0.3s; margin-bottom: 12px; }
+    input:focus, select:focus { outline: none; border-color: #00a86b; box-shadow: 0 0 0 5px rgba(0,168,107,0.2); }
+    input.invalid, select.invalid { border-color: #e74c3c; box-shadow: 0 0 0 5px rgba(231,76,60,0.2); }
+    button {
+      width: 100%; padding: 16px; background: linear-gradient(135deg, #00a86b, #006a4e);
+      color: white; border: none; border-radius: 14px; font-size: 20px; font-weight: 600;
+      cursor: pointer; margin-top: 20px; transition: all 0.3s; box-shadow: 0 8px 25px rgba(0,168,107,0.4);
+    }
+    button:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,168,107,0.5); }
+    button:disabled { background: #95a5a6; transform: none; box-shadow: none; }
+    .message { margin-top: 20px; padding: 14px; border-radius: 12px; font-weight: 600; text-align: center; font-size: 16px; }
+    .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+    footer { text-align: center; padding: 20px; color: #555; font-size: 13px; font-weight: 500; }
+    @media (max-width: 400px) { .form-body { padding: 20px; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header"><h1>RWANDA Youth Opportunity Form</h1></div>
+  <div class="logo"><img src="https://i.imgur.com/jXUFG6t.png" alt="Logo"></div>
+  <div class="tagline">Join thousands of young Rwandans building a brighter future</div>
+
+  <div class="form-body">
+    <form id="registerForm">
+
+      <label>Full Names *</label>
+      <input type="text" id="fullname" placeholder="Enter your full names" required>
+
+      <label>National ID (NID) *</label>
+      <input type="text" id="nid" maxlength="16" placeholder="Must be 16 digits, start with 1" required>
+
+      <label>Telephone Number *</label>
+      <input type="text" id="telephone" maxlength="10" placeholder="Must be 10 digits, start with 07" required>
+
+      <label>Education Level *</label>
+      <select id="education" required>
+        <option value="">Select Education Level</option>
+        <option>P6</option><option>S3</option><option>A2</option><option>A1</option>
+        <option>A0</option><option>Bachelor</option><option>Masters</option><option>PhD</option>
+      </select>
+
+      <label>District *</label>
+      <input type="text" id="district" placeholder="e.g. Gasabo" required>
+
+      <label>Sector *</label>
+      <input type="text" id="sector" placeholder="e.g. Remera" required>
+
+      <label>Cell *</label>
+      <input type="text" id="cell" placeholder="e.g. Gisozi" required>
+
+      <label>Village *</label>
+      <input type="text" id="village" placeholder="e.g. Nyabihu" required>
+
+      <button type="submit" id="submitBtn">REGISTER NOW</button>
+    </form>
+    <div class="message" id="message"></div>
+  </div>
+
+  <footer>© 2025 RWANDA Youth Opportunity • Made with pride in Rwanda</footer>
+</div>
+
+<script>
+// YOUR NEW & OFFICIAL SCRIPT LINK (UPDATED!)
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzc-ULRhcmOfKg0ZQsXOQO7uzsRadxWiined2hEL2lSNDzqgrFtkzGURenhKOI38Pxl/exec";
+
+const form = document.getElementById('registerForm');
+const messageDiv = document.getElementById('message');
+const submitBtn = document.getElementById('submitBtn');
+
+let nidValue = '', phoneValue = '';
+
+// Real-time validation
+document.getElementById('fullname').addEventListener('input', function() {
+  this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+});
+document.getElementById('nid').addEventListener('input', function(e) {
+  nidValue = e.target.value.replace(/\D/g, '').slice(0,16);
+  e.target.value = nidValue;
+  e.target.classList.toggle('invalid', nidValue.length > 0 && (nidValue.length !== 16 || !nidValue.startsWith('1')));
+});
+document.getElementById('telephone').addEventListener('input', function(e) {
+  phoneValue = e.target.value.replace(/\D/g, '').slice(0,10);
+  e.target.value = phoneValue;
+  e.target.classList.toggle('invalid', phoneValue.length > 0 && (phoneValue.length !== 10 || !phoneValue.startsWith('07')));
+});
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  messageDiv.innerHTML = '';
+
+  const fullname = document.getElementById('fullname').value.trim();
+  const education = document.getElementById('education').value;
+  const district = document.getElementById('district').value.trim();
+  const sector = document.getElementById('sector').value.trim();
+  const cell = document.getElementById('cell').value.trim();
+  const village = document.getElementById('village').value.trim();
+
+  // FINAL VALIDATION
+  if (!/^[a-zA-Z\s]{4,50}$/.test(fullname)) {
+    return messageDiv.innerHTML = '<div class="error">Please enter valid full names (letters only)</div>';
+  }
+  if (nidValue.length !== 16 || !nidValue.startsWith('1')) {
+    return messageDiv.innerHTML = '<div class="error">NID must be exactly 16 digits and start with 1</div>';
+  }
+  if (phoneValue.length !== 10 || !phoneValue.startsWith('07')) {
+    return messageDiv.innerHTML = '<div class="error">Phone must be exactly 10 digits and start with 07</div>';
+  }
+  if (!education) {
+    return messageDiv.innerHTML = '<div class="error">Please select your education level</div>';
+  }
+  if (district.length < 2 || sector.length < 2 || cell.length < 2 || village.length < 2) {
+    return messageDiv.innerHTML = '<div class="error">District, Sector, Cell, Village must be at least 2 characters</div>';
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Checking...";
+
+  try {
+    const check = await fetch(`${SCRIPT_URL}?check=1&nid=${nidValue}&phone=${phoneValue}`);
+    const res = await check.json();
+    if (res.exists) {
+      const field = res.exists === 'nid' ? 'NID' : 'phone number';
+      messageDiv.innerHTML = `<div class="warning"><strong>This ${field} is already registered!</strong><br>You cannot register twice.</div>`;
+      submitBtn.disabled = false;
+      submitBtn.textContent = "REGISTER NOW";
+      return;
+    }
+
+    submitBtn.textContent = "Registering...";
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        fullname, nid: nidValue, telephone: phoneValue,
+        education, district, sector, cell, village
+      }),
+      headers: {'Content-Type': 'text/plain'}
+    });
+
+    const result = await response.json();
+    if (result.status === "success") {
+      messageDiv.innerHTML = `<div class="success">Registered Successfully!<br><strong>Your Registration NO: ${result.no}</strong></div>`;
+      form.reset();
+    } else {
+      messageDiv.innerHTML = '<div class="error">Server error. Please try again.</div>';
+    }
+  } catch (err) {
+    messageDiv.innerHTML = '<div class="error">No internet connection.</div>';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "REGISTER NOW";
+  }
+});
+</script>
+
+</body>
+</html>
